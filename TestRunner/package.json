@@ -1,0 +1,29 @@
+{
+  "name": "testrunner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryokohbato/AtCoder_Tools.git"
+  },
+  "author": "ryokohbato",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryokohbato/AtCoder_Tools/issues"
+  },
+  "homepage": "https://github.com/ryokohbato/AtCoder_Tools#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "fs-extra": "^9.1.0",
+    "minimist": "^1.2.5",
+    "ts-loader": "^8.0.18",
+    "typescript": "^4.2.3",
+    "webpack": "^5.26.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
