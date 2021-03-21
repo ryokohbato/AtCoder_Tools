@@ -1,8 +1,9 @@
 import { access } from "fs/promises";
-import { constants } from "fs";
-import { argError, help, permissionError, runtimeError } from "./Errors";
-import { readFileSync } from "fs";
+import { constants, readFileSync } from "fs";
 import { execSync } from "child_process";
+import { help, permissionError } from "./Errors";
+import { argError, runtimeError } from "../../__utilities/Errors__common";
+import { formatPath } from "../../__utilities/Utilities";
 
 const argv = require('minimist')(process.argv.slice(2));
 
@@ -30,17 +31,11 @@ if (executableFilePath == null || testFileDirPath == null) {
 access(executableFilePath, constants.F_OK | constants.X_OK).catch(err => {
   if (err) {
     permissionError(err);
+    process.exit(1);
   }
 })
 
-// \ を / に置換
-testFileDirPath.replace(/\\/g, "/");
-
-// テストファイルのパスを整形(末尾に\または/があれば削除)
-const lastCharOfTestFileDirPath = testFileDirPath.substring(testFileDirPath.length - 1);
-if (lastCharOfTestFileDirPath == "\\" || lastCharOfTestFileDirPath == "/") {
-  testFileDirPath = testFileDirPath.substring(0, testFileDirPath.length - 1);
-}
+formatPath(testFileDirPath);
 
 // テストテキストファイルを読み込む
 // ファイル名は[test_$__answer.txt] (1から連番)であるものとする
