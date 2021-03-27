@@ -1,0 +1,2 @@
+# TestUtility
+AtCoderコンテストのテストをローカル環境で走らせるツール
