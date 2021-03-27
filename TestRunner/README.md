@@ -6,4 +6,4 @@
 $ ./bin/TestRunner -e [実行ファイルの絶対パス] -t [テストファイルの保管ディレクトリ]
 ```
 
-このツールは[TestUtility](https://github.com/ryokohbato/AtCoder_Tools/blob/main/TestUtility/README.md)に含まれています。
+このツールは[TestUtility](https://github.com/ryokohbato/AtCoder_Tools/blob/main/TestUtility)に含まれています。
