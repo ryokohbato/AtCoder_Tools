@@ -76,14 +76,29 @@ const setIndent = (width: number) => {
   return " ".repeat(width);
 }
 
+const outputStyle = (output: string) => {
+  return output.replace(/^/, `${setIndent(2)}│${setIndent(2)}`).replace(/\n/g, `\n${setIndent(2)}│${setIndent(2)}`);
+}
+
+const outputSeparatorWidth = 36;
+
 const getAllWAInformation = (WAList: Array<number>): string => {
   let WAInformation: string = "";
 
   for(let x of WAList) {
-    WAInformation +=
-      "\n\n" + setIndent(2) +"解答: ====== \n" + setIndent(2) + testAnswerList[x - 1] + "\n" + setIndent(2) +"============\n" +
-      setIndent(2) + "出力: ======\n" + setIndent(2) +
-      (new TextDecoder).decode(execSync(`${executableFilePath} < ${testFileDirPath}/test_${x}.txt`)) + "\n" + setIndent(2) +"============"
+    const output = (new TextDecoder).decode(execSync(`${executableFilePath} < ${testFileDirPath}/test_${x}.txt`));
+    WAInformation += "\n\n" +
+    setIndent(2) + "┌" + "─".repeat(outputSeparatorWidth) + "\n" +
+    setIndent(2) + `│  テストケース: ${x}\n` +
+    setIndent(2) + "├" + "─".repeat(outputSeparatorWidth) + "\n" +
+    setIndent(2) + `│  解答\n` + 
+    setIndent(2) + "├" + "─".repeat(outputSeparatorWidth) + "\n" +
+    outputStyle(testAnswerList[x - 1]) + "\n" + 
+    setIndent(2) + "├" + "─".repeat(outputSeparatorWidth) + "\n" +
+    setIndent(2) + `│  出力\n` + 
+    setIndent(2) + "├" + "─".repeat(outputSeparatorWidth) + "\n" +
+    outputStyle(output) + "\n" +
+    setIndent(2) + "└" + "─".repeat(outputSeparatorWidth);
   }
 
   return WAInformation;
