@@ -6,7 +6,7 @@ export const outputTestCase = (html: string, testFileDirPath: string) => {
 
   const testCases = [];
 
-  $('pre', '.lang-ja' ).each((i, element) => {
+  $('pre', '.lang-ja').each((i, element) => {
     if (i != 0) testCases.push($(element).text());
   })
 
