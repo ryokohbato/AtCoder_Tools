@@ -13,7 +13,7 @@ Hoge
 ├── main.cpp
 └── SetUp.sh
 
-$ ./SetUp.sh
+$ ./SetUp.sh [コンテスト問題ページURL]
 
 $ ./Build.sh
 ```
